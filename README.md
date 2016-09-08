@@ -12,6 +12,11 @@ This is a boilerplate for React Webpack project. You could use it to build your 
 - file to base64
 
 
+## Config
+
+	webpack.base.config.js
+
+
 ## Clone
 
 ```bash
