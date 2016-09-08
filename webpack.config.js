@@ -12,6 +12,7 @@ var devServer = {
     port: 9000, //调试端口号
     hot: process.argv.indexOf('--hotreload')>-1, //是否使用react-hot-loader，false时全页面刷新
     colors: true,
+    inline:true,
     progress: true
 };
 
@@ -44,6 +45,9 @@ var config = {
         }, {
             test: /\.scss$/,
             loader: 'style!css!sass'
+        }, {
+            test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
+            loader: 'file?name=[name].[ext]?[hash:7]'
         }],
         noParse: [pathToReact, pathToReactDom]
     },

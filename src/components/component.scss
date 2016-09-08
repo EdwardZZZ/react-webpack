@@ -1,17 +1,17 @@
 @import "../assets/common.scss";
 
 body{
-  background-color: #eee;
+  background-color: #fff;
 }
 
 h1{
   font-size: 26px;
   .logo{
+    background: url(./logo.png);
+    background-size: 100%;
     display: inline-block;
     width: 30px;
     height: 30px;
-    background: url(/static/img/logo.png);
-    background-size: 100%;
   }
 }
 

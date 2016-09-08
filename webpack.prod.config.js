@@ -4,8 +4,15 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var extractCSS = new ExtractTextPlugin('css/[name].css');
+var publicConfig = {
+    publicPath: '',
+    publicJSPath: 'js',
+    publicCSSPath: 'css',
+    publicIMGPath: 'img',
+    fileLimit: 20000,       //图片或字体设置，小于fileLimit会自动转成base64
+}
 
+var extractCSS = new ExtractTextPlugin(publicConfig.publicCSSPath + '/[name].css');
 var config = {
     entry: {
         app: './src/main.js',
@@ -15,8 +22,9 @@ var config = {
         extensions: ['', '.js', '.jsx']
     },
     output: {
+        publicPath: publicConfig.publicPath,
         path: path.resolve(__dirname, 'build'),
-        filename: 'js/[name].js'
+        filename: publicConfig.publicJSPath + '/[name].js'
     },
     module: {
         loaders: [{
@@ -29,11 +37,18 @@ var config = {
         }, {
             test: /\.scss$/,
             loader: extractCSS.extract(['css', 'sass'])
+        }, {
+            test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
+            loader: 'url',
+            query: {
+              limit: publicConfig.fileLimit,
+              name: publicConfig.publicIMGPath + '/[name].[ext]'
+            }
         }]
     },
     plugins: [
         extractCSS,
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', publicConfig.publicJSPath + '/vendors.js'),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')

@@ -4,6 +4,8 @@ import dateUtils from '../util/dateUtils';
 
 import './component.scss'
 
+import logo from './logo.png'
+
 export default class Component extends React.Component {
     constructor(props){
         super();
@@ -14,6 +16,7 @@ export default class Component extends React.Component {
 
     render() {
         return <h1 onClick = {this.click} > 
+            <img src={logo} />
             <i className="logo logo1"></i>
             {this.state.text}
         </h1>;
@@ -27,5 +30,6 @@ export default class Component extends React.Component {
     
     click = (event) => {
         this.showTime()
+        setInterval( () => this.showTime(), 1000)
     }
 }
