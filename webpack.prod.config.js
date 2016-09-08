@@ -6,6 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var baseConfig = require('./webpack.base.config')
 var publicConfig = baseConfig.publicConfig
+baseConfig.scssLoader.shift()
 
 var extractCSS = new ExtractTextPlugin(publicConfig.publicCSSPath + '/[name].css');
 var config = {
