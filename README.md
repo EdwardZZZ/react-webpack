@@ -7,6 +7,8 @@ This is a boilerplate for React Webpack project. You could use it to build your 
 - webpack
 - hot reloader
 - babel
+- scss
+- autoprefixer
 - file to base64
 
 

@@ -8,13 +8,8 @@ var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js');
 
-var devServer = {
-    port: 9000, //调试端口号
-    hot: process.argv.indexOf('--hotreload')>-1, //是否使用react-hot-loader，false时全页面刷新
-    colors: true,
-    inline:true,
-    progress: true
-};
+var baseConfig = require('./webpack.base.config')
+var devServer = baseConfig.devServer
 
 var config = {
     entry: [
@@ -41,10 +36,10 @@ var config = {
             loaders: ['react-hot', 'babel'],
         }, {
             test: /\.css$/,
-            loader: 'style!css'
+            loader: baseConfig.cssLoader.join('!')
         }, {
             test: /\.scss$/,
-            loader: 'style!css!sass'
+            loader: baseConfig.scssLoader.join('!')
         }, {
             test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
             loader: 'file?name=[name].[ext]?[hash:7]'

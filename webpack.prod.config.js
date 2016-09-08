@@ -4,13 +4,8 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var publicConfig = {
-    publicPath: '',
-    publicJSPath: 'js',
-    publicCSSPath: 'css',
-    publicIMGPath: 'img',
-    fileLimit: 20000,       //图片或字体设置，小于fileLimit会自动转成base64
-}
+var baseConfig = require('./webpack.base.config')
+var publicConfig = baseConfig.publicConfig
 
 var extractCSS = new ExtractTextPlugin(publicConfig.publicCSSPath + '/[name].css');
 var config = {
@@ -33,10 +28,10 @@ var config = {
             loader: 'babel',
         }, {
             test: /\.css$/,
-            loader: 'style!css'
+            loader: baseConfig.cssLoader.join('!')
         }, {
             test: /\.scss$/,
-            loader: extractCSS.extract(['css', 'sass'])
+            loader: extractCSS.extract(baseConfig.scssLoader)
         }, {
             test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
             loader: 'url',
@@ -58,11 +53,7 @@ var config = {
             filename: 'index.html',
             template: 'index.html',
             inject: true,
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-            },
+            minify: publicConfig.minify,
             chunksSortMode: 'dependency'
         }),
         new webpack.optimize.UglifyJsPlugin({
