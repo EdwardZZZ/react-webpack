@@ -25,7 +25,7 @@ export default class Component extends React.Component {
     
     click = (event) => {
         this.setState({
-            text: 'Hello~~'
+            text: 'Hello'
         })
     }
 }
