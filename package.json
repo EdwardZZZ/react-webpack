@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --devtool eval --progress",
     "dev": "webpack-dev-server --devtool eval --progress --hotreload",
-    "build": "webpack -p --config webpack.prod.config.js"
+    "build": "webpack --progress --config webpack.prod.config.js"
   },
   "keywords": [],
   "author": "",

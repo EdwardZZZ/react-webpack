@@ -1,14 +1,12 @@
 require('shelljs/global')
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var baseConfig = require('./webpack.base.config')
 var publicConfig = baseConfig.publicConfig
-baseConfig.scssLoader.shift()
+var extractCSS = baseConfig.extractCSS
 
-var extractCSS = new ExtractTextPlugin(publicConfig.publicCSSPath + '/[name].css');
 var config = {
     entry: {
         app: './src/main.js',
@@ -59,10 +57,8 @@ var config = {
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false,
-                dead_code: true,
-                unused: true
-            },
+                warnings: false
+            }
         }),
         new webpack.optimize.OccurenceOrderPlugin()
     ]

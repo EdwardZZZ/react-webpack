@@ -1,14 +1,12 @@
-@import "../assets/common.scss";
-
 body{
   background-color: #fff;
-  display: flex;
 }
 
 h1{
+  flex: 1;
   font-size: 26px;
   .logo{
-    background: url(./logo.png);
+    background: url(../assets/logo.png);
     background-size: 100%;
     display: inline-block;
     width: 30px;

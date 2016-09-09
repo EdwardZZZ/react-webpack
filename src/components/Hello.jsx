@@ -1,16 +1,17 @@
 import React from 'react';
 
+import './Hello.scss'
+import logo from '../assets/logo.png'
+
 import dateUtils from '../util/dateUtils';
 
-import './component.scss'
-
-import logo from './logo.png'
+import World from './World'
 
 export default class Component extends React.Component {
     constructor(props){
         super();
         this.state = {
-            text: '戳我显示时间'
+            text: 'Hello'
         }
     }
 
@@ -18,18 +19,13 @@ export default class Component extends React.Component {
         return <h1 onClick = {this.click} > 
             <img src={logo} />
             <i className="logo logo1"></i>
-            {this.state.text}
+            {this.state.text} <World />!
         </h1>;
     }
     
-    showTime(){
-        this.setState({
-            text: dateUtils.format(new Date(), 'yyyy-MM-dd hh:mm:ss')
-        })
-    }
-    
     click = (event) => {
-        this.showTime()
-        setInterval( () => this.showTime(), 1000)
+        this.setState({
+            text: 'Hello~~'
+        })
     }
 }
