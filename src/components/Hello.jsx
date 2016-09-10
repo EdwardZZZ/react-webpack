@@ -7,7 +7,7 @@ import dateUtils from '../util/dateUtils';
 
 import World from './World'
 
-export default class Component extends React.Component {
+export default class Hello extends React.Component {
     constructor(props){
         super();
         this.state = {

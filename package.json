@@ -1,15 +1,19 @@
 {
   "name": "react-webpack",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A boilerplate for writing React based ES6 app with webpack",
+  "main": "index.html",
   "scripts": {
     "start": "webpack-dev-server --devtool eval --progress",
     "dev": "webpack-dev-server --devtool eval --progress --hotreload",
     "build": "webpack --progress --config webpack.prod.config.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdwardZZZ/react-webpack"
+  },
   "keywords": [],
-  "author": "",
+  "author": "edwardzzz@foxmail.com",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
