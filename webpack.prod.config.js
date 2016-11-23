@@ -6,6 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var baseConfig = require('./webpack.base.config')
 var publicConfig = baseConfig.publicConfig
 var extractCSS = baseConfig.extractCSS
+var extractSCSS = baseConfig.extractSCSS
 
 var config = {
     entry: {
@@ -18,7 +19,7 @@ var config = {
     output: {
         publicPath: publicConfig.publicPath,
         path: path.resolve(__dirname, 'build'),
-        filename: publicConfig.publicJSPath + '/[name].js'
+        filename: publicConfig.jsPath + '/[name].js'
     },
     module: {
         loaders: [{
@@ -27,22 +28,23 @@ var config = {
             loader: 'babel',
         }, {
             test: /\.css$/,
-            loader: baseConfig.cssLoader.join('!')
+            loader: extractCSS.extract(baseConfig.cssLoader)
         }, {
             test: /\.scss$/,
-            loader: extractCSS.extract(baseConfig.scssLoader)
+            loader: extractSCSS.extract(baseConfig.scssLoader)
         }, {
             test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
             loader: 'url',
             query: {
               limit: publicConfig.fileLimit,
-              name: publicConfig.publicIMGPath + '/[name].[ext]'
+              name: publicConfig.imgPath + '/[name].[ext]'
             }
         }]
     },
     plugins: [
         extractCSS,
-        new webpack.optimize.CommonsChunkPlugin('vendors', publicConfig.publicJSPath + '/vendors.js'),
+        extractSCSS,
+        new webpack.optimize.CommonsChunkPlugin('vendors', publicConfig.jsPath + '/vendors.js'),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')

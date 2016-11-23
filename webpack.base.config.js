@@ -17,14 +17,15 @@ var config = {
     publicConfig: {
         minify: false,  //是否压缩html页面
         publicPath: '', //发布路径，例如cdn
-        publicJSPath: '/js', //js路径
-        publicCSSPath: '/css',   //css路径
-        publicIMGPath: '/img',   //资源路径
+        jsPath: '/js', //js路径
+        cssPath: '/css',   //css路径
+        imgPath: '/img',   //资源路径
         fileLimit: 20,       //图片或字体设置，小于fileLimit会自动转成base64
     },
 }
 
-config.extractCSS = new ExtractTextPlugin(config.publicConfig.publicCSSPath + '/[name].css');
+config.extractCSS = new ExtractTextPlugin(config.publicConfig.cssPath + '/[name].css');
+config.extractSCSS = new ExtractTextPlugin(config.publicConfig.cssPath + '/[name].css');
 config.cssLoader = ['style', 'css']
 config.scssLoader = ['css', 'sass']
 if(config.autoprefixer.auto){

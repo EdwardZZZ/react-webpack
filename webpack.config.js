@@ -40,7 +40,7 @@ var config = {
             loader: 'url',
             query: {
               limit: publicConfig.fileLimit,
-              name: publicConfig.publicIMGPath + '/[name].[ext]'
+              name: publicConfig.imgPath + '/[name].[ext]'
             }
         }],
         noParse: [pathToReact, pathToReactDom]
