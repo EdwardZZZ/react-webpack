@@ -10,8 +10,7 @@ var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js
 var baseConfig = require('./webpack.base.config')
 var devServer = baseConfig.devServer
 var publicConfig = baseConfig.publicConfig
-var extractCSS = baseConfig.extractCSS
-var extractSCSS = baseConfig.extractSCSS
+baseConfig.scssLoader.unshift('style')
 
 var config = {
     entry: [
@@ -32,10 +31,10 @@ var config = {
             loaders: ['react-hot', 'babel'],
         }, {
             test: /\.css$/,
-            loader: extractCSS.extract(baseConfig.cssLoader)
+            loader: baseConfig.cssLoader.join('!')
         }, {
             test: /\.scss$/,
-            loader: extractSCSS.extract(baseConfig.scssLoader)
+            loader: baseConfig.scssLoader.join('!')
         }, {
             test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
             loader: 'url',
@@ -48,8 +47,6 @@ var config = {
     },
     devServer: devServer,
     plugins: [
-        extractCSS,
-        extractSCSS,
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: 'index.html',
