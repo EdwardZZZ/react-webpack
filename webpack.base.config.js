@@ -27,7 +27,7 @@ var config = {
 config.extractCSS = new ExtractTextPlugin(config.publicConfig.cssPath + '/[name].css');
 config.extractSCSS = new ExtractTextPlugin(config.publicConfig.cssPath + '/[name].css');
 config.cssLoader = ['style', 'css']
-config.scssLoader = ['css', 'sass']
+config.scssLoader = ['css?minimize=false!sass', 'sass']
 if(config.autoprefixer.auto){
     var _loader = 'autoprefixer?{browsers:'+ config.autoprefixer.version +'}'
     config.cssLoader.push(_loader)
