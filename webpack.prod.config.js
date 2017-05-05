@@ -45,11 +45,9 @@ var config = {
         extractCSS,
         extractSCSS,
         new webpack.optimize.CommonsChunkPlugin('vendors', publicConfig.jsPath + '/vendors.js'),
-        /*
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendors', 'manifest']
         }),
-        */
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
